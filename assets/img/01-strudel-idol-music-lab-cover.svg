@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="音軌色條與波形">
+  <rect width="1200" height="630" fill="#F4F3EF"/>
+  <g stroke="#1C1C1E" stroke-width="2" opacity="0.15">
+    <line x1="160" y1="110" x2="160" y2="520"/><line x1="380" y1="110" x2="380" y2="520"/>
+    <line x1="600" y1="110" x2="600" y2="520"/><line x1="820" y1="110" x2="820" y2="520"/><line x1="1040" y1="110" x2="1040" y2="520"/>
+  </g>
+  <g fill="#B3541E">
+    <rect x="160" y="140" width="90" height="34" rx="17"/><rect x="380" y="140" width="90" height="34" rx="17"/>
+    <rect x="600" y="140" width="90" height="34" rx="17"/><rect x="820" y="140" width="90" height="34" rx="17"/>
+  </g>
+  <g fill="#B3541E" opacity="0.55">
+    <rect x="270" y="210" width="60" height="34" rx="17"/><rect x="490" y="210" width="60" height="34" rx="17"/>
+    <rect x="710" y="210" width="60" height="34" rx="17"/><rect x="930" y="210" width="60" height="34" rx="17"/>
+  </g>
+  <rect x="160" y="280" width="400" height="34" rx="17" fill="#1C1C1E"/>
+  <rect x="600" y="280" width="300" height="34" rx="17" fill="#1C1C1E" opacity="0.8"/>
+  <rect x="160" y="350" width="880" height="34" rx="17" fill="#B3541E" opacity="0.25"/>
+  <polyline fill="none" stroke="#1C1C1E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+    points="160,470 200,440 240,500 280,420 320,480 360,450 400,470 440,410 480,500 520,445 560,470 600,430 640,495 680,440 720,470 760,415 800,490 840,450 880,470 920,425 960,485 1000,450 1040,470"/>
+</svg>

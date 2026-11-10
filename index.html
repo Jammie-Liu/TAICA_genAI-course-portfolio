@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jammie 的生成式 AI 作品集</title>
+  <meta name="description" content="Jammie 在 TAICA 生成式AI 課程中的作業作品集：System Prompt、RAG、Planning Agent 與互動網頁。">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Jammie <span>／ 生成式 AI 作品集</span></a>
+      <nav class="nav" aria-label="主選單">
+        <a href="#works">作品</a>
+        <a href="#process">製作流程</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro wrap">
+      <p class="eyebrow">TAICA_生成式AI：文字與圖像生成的原理與實務</p>
+      <h1>從一段 prompt，到會規劃的 AI 助手</h1>
+      <p class="lead">這裡收錄我在生成式 AI 課程中的作業。每個作品都記錄用了什麼技術、為什麼這樣設計，以及它是怎麼運作的。</p>
+      <div class="stats">
+        <div><strong data-count="works">4</strong><span>件作品</span></div>
+        <div><strong>4 層</strong><span>ideas → notes → assets → works</span></div>
+        <div><strong>AGENTS.md</strong><span>讓 AI 依規則持續新增作品</span></div>
+      </div>
+    </section>
+
+    <section id="works" class="wrap">
+      <div class="section-head">
+        <h2>作品</h2>
+        <p>依完成順序排列，點卡片看完整介紹</p>
+      </div>
+      <div class="grid">
+<!-- WORKS:START -->
+        <a class="card" href="works/01-strudel-idol-music-lab.html">
+          <img src="assets/img/01-strudel-idol-music-lab-cover.svg" alt="" width="1200" height="630" loading="lazy">
+          <div class="card-body">
+            <span class="card-no">WORK 01</span>
+            <h3>互動網頁 × Live Coding<span class="sep">｜</span>偶像風格音樂實驗室</h3>
+            <p>選一位歌手的風格，用滑桿與開關即時生成一段原創循環音樂。</p>
+            <ul class="tags"><li><span class="tag">互動網頁</span></li><li><span class="tag">Live Coding</span></li><li><span class="tag">Strudel</span></li><li><span class="tag">Web Audio</span></li><li><span class="tag">GitHub Pages</span></li></ul>
+          </div>
+        </a>
+        <a class="card" href="works/02-system-prompt-advice-room.html">
+          <img src="assets/img/02-system-prompt-advice-room-cover.svg" alt="" width="1200" height="630" loading="lazy">
+          <div class="card-body">
+            <span class="card-no">WORK 02</span>
+            <h3>System Prompt<span class="sep">｜</span>大叔三人組諮詢室</h3>
+            <p>三位虛構大叔輪流回覆煩惱投稿：先事實暴擊、再互相吐槽，最後給真心建議。</p>
+            <ul class="tags"><li><span class="tag">System Prompt</span></li><li><span class="tag">角色設定</span></li><li><span class="tag">Few-shot</span></li><li><span class="tag">提示安全</span></li></ul>
+          </div>
+        </a>
+        <a class="card" href="works/03-rag-mcp-tutor.html">
+          <img src="assets/img/03-rag-mcp-tutor-cover.svg" alt="" width="1200" height="630" loading="lazy">
+          <div class="card-body">
+            <span class="card-no">WORK 03</span>
+            <h3>RAG<span class="sep">｜</span>MCP 課程助教</h3>
+            <p>把 Anthropic 的 MCP 課程做成知識庫，打造只根據課程內容回答的中文助教。</p>
+            <ul class="tags"><li><span class="tag">RAG</span></li><li><span class="tag">Embeddings</span></li><li><span class="tag">FAISS</span></li><li><span class="tag">Colab</span></li><li><span class="tag">System Prompt</span></li></ul>
+          </div>
+        </a>
+        <a class="card" href="works/04-planning-agent-advice-room.html">
+          <img src="assets/img/04-planning-agent-advice-room-cover.svg" alt="" width="1200" height="630" loading="lazy">
+          <div class="card-body">
+            <span class="card-no">WORK 04</span>
+            <h3>Planning Agent<span class="sep">｜</span>先規劃再回覆的諮詢室</h3>
+            <p>讓諮詢機器人先產生可編輯的「諮詢計畫」，再依計畫寫出三人對話回覆。</p>
+            <ul class="tags"><li><span class="tag">Planning</span></li><li><span class="tag">兩階段生成</span></li><li><span class="tag">Gradio</span></li><li><span class="tag">Colab</span></li><li><span class="tag">提示安全</span></li></ul>
+          </div>
+        </a>
+<!-- WORKS:END -->
+      </div>
+    </section>
+
+    <section id="process" class="process wrap">
+      <div class="section-head">
+        <h2>製作流程</h2>
+        <p>每個作品都照 AGENTS.md 的四層流程產生</p>
+      </div>
+      <ol class="steps">
+        <li><code>ideas/</code><h3>整理想法</h3><p>收集作業要求、動機與素材，不確定的事列為「待確認」。</p></li>
+        <li><code>notes/</code><h3>寫定稿</h3><p>依固定段落寫好文字，是網頁內容的唯一來源。</p></li>
+        <li><code>assets/</code><h3>做插圖</h3><p>依統一的配色規則，為每個作品畫一張幾何封面。</p></li>
+        <li><code>works/</code><h3>產生頁面</h3><p>複製作品頁樣板填入內容，再把卡片加到首頁。</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Jammie ・ TAICA_生成式AI：文字與圖像生成的原理與實務 課程作品集</p>
+    </div>
+  </footer>
+</body>
+</html>

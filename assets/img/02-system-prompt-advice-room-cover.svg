@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="三個對話框">
+  <rect width="1200" height="630" fill="#F4F3EF"/>
+  <path d="M190 120h420a30 30 0 0 1 30 30v120a30 30 0 0 1-30 30H300l-60 52v-52h-50a30 30 0 0 1-30-30V150a30 30 0 0 1 30-30z" fill="#3D4A7A"/>
+  <g fill="#F4F3EF"><rect x="210" y="170" width="300" height="18" rx="9"/><rect x="210" y="215" width="200" height="18" rx="9"/></g>
+  <path d="M590 250h400a30 30 0 0 1 30 30v100a30 30 0 0 1-30 30h-50v52l-60-52H590a30 30 0 0 1-30-30V280a30 30 0 0 1 30-30z" fill="none" stroke="#1C1C1E" stroke-width="6"/>
+  <g fill="#1C1C1E"><rect x="615" y="300" width="250" height="18" rx="9"/><rect x="615" y="345" width="320" height="18" rx="9" opacity="0.35"/></g>
+  <path d="M250 430h460a30 30 0 0 1 30 30v60a30 30 0 0 1-30 30H360l-50 40v-40h-60a30 30 0 0 1-30-30v-60a30 30 0 0 1 30-30z" fill="#3D4A7A" opacity="0.18"/>
+  <rect x="275" y="482" width="360" height="18" rx="9" fill="#3D4A7A"/>
+</svg>

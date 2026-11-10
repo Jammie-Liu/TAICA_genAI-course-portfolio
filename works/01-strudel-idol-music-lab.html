@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>互動網頁 × Live Coding｜偶像風格音樂實驗室｜Jammie 的生成式 AI 作品集</title>
+  <meta name="description" content="選一位歌手的風格，用滑桿與開關即時生成一段原創循環音樂。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Jammie <span>／ 生成式 AI 作品集</span></a>
+      <a class="back" href="../index.html#works">← 所有作品</a>
+    </div>
+  </header>
+
+  <main class="work">
+    <section class="work-hero wrap-narrow">
+      <p class="work-no">WORK 01</p>
+      <ul class="tags">
+        <li><span class="tag">互動網頁</span></li>
+        <li><span class="tag">Live Coding</span></li>
+        <li><span class="tag">Strudel</span></li>
+        <li><span class="tag">Web Audio</span></li>
+        <li><span class="tag">GitHub Pages</span></li>
+      </ul>
+      <h1>互動網頁 × Live Coding<span class="sep">｜</span>偶像風格音樂實驗室</h1>
+      <p class="lede">選一位歌手的風格，用滑桿與開關即時生成一段原創循環音樂。</p>
+      <p class="links">
+        <a class="btn" href="https://jammie-liu.github.io/designYourSong/" target="_blank" rel="noopener">線上試玩 ↗</a>
+        <a class="btn" href="https://github.com/Jammie-Liu/designYourSong" target="_blank" rel="noopener">GitHub 原始碼 ↗</a>
+      </p>
+    </section>
+
+    <figure class="cover wrap-narrow">
+      <img src="../assets/img/01-strudel-idol-music-lab-cover.svg" alt="幾何封面：代表音軌的橫向色條與波形線條" width="1200" height="630">
+    </figure>
+
+    <article class="prose wrap-narrow">
+<h2>作品概述</h2>
+<p>使用者選一位歌手的「風格模組」，拖拉滑桿、開關音軌，就能即時聽到「如果用這位歌手的風格做一首歌，會是什麼聲音」。所有音樂都由 Strudel 在瀏覽器裡即時生成，是依風格要素重新編寫的原創循環，不使用任何原曲音檔或旋律。</p>
+<h2>動機</h2>
+<p>這份作業要做一個互動網頁，我選了偶像當主題。目標使用者是偶像粉絲，以及對音樂製作好奇、但不懂樂理的人。我希望使用者不只聽到「像」，還能知道<strong>為什麼聽起來像</strong>——是速度、鼓的型態，還是和弦走向。</p>
+<h2>使用技術</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技術</th>
+<th>在這個作品的用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strudel</td>
+<td>瀏覽器中的 live coding 音樂環境，透過 <code>@strudel/web</code> 產生並播放所有音樂</td>
+</tr>
+<tr>
+<td>Mini-notation</td>
+<td>用短字串描述節奏，例如 <code>"bd ~ sd ~"</code> 代表大鼓、休止、小鼓、休止</td>
+</tr>
+<tr>
+<td>Web Audio API</td>
+<td>即時合成鋸齒波、方波、三角波等音色，處理濾波與殘響</td>
+</tr>
+<tr>
+<td>Dirt-Samples</td>
+<td>TidalCycles 社群的開源鼓組音色庫</td>
+</tr>
+<tr>
+<td>YouTube IFrame Player API</td>
+<td>嵌入參考歌曲，和生成音樂互相自動暫停</td>
+</tr>
+<tr>
+<td>HTML／CSS／JavaScript</td>
+<td>依作業規定，全部寫在單一 <code>index.html</code></td>
+</tr>
+<tr>
+<td>GitHub Pages</td>
+<td>部署靜態網頁，push 後自動更新</td>
+</tr>
+</tbody>
+</table></div>
+<h2>運作方式</h2>
+<ol>
+<li>每位歌手是一個「風格模組」，記錄 BPM、鼓組型態、和弦進行、音色等要素。</li>
+<li>使用者選模組、拉滑桿或開關音軌時，程式更新狀態物件。</li>
+<li><code>buildCode()</code> 依模組與參數組出一段新的 Strudel 程式碼。</li>
+<li>Strudel 解析這段程式碼，在不中斷節拍的情況下換上新的聲音。</li>
+<li>同步更新風格說明卡與程式碼面板；使用者也可以直接改程式碼後執行。</li>
+<li>「對照原曲」可以用 A／B 切換，比較生成版本和參考歌曲。</li>
+</ol>
+<h2>設計重點</h2>
+<ul>
+<li><strong>7 個風格模組</strong>：每位歌手挑 3 首代表歌曲，整理 BPM、調性、鼓組與音色，再寫成模組參數；新增歌手只要在 <code>MODULES</code> 陣列多加一個物件。</li>
+<li><strong>只借風格、不抄原曲</strong>：只借用 BPM、調性、鼓組型態、和弦進行類型等曲風共通要素，不使用原曲音檔、旋律或歌詞。</li>
+<li><strong>把 live coding 包裝成一般人能用的介面</strong>：使用者不用懂程式，操作滑桿就是在背後改寫 Strudel 程式碼；想體驗真正的 live coding，也能在程式碼面板直接修改。</li>
+<li><strong>載入失敗不卡住</strong>：unpkg 連不上時改用 jsdelivr；鼓組音色載入失敗時只用合成器播放，並在畫面上顯示原因。</li>
+<li><strong>低飽和視覺</strong>：深灰底加銀色金屬點綴，選中模組時背景淡淡染上該歌手的代表色。</li>
+</ul>
+<h2>範例</h2>
+<p>一段有鼓、貝斯和和弦的 Strudel 循環。把 <code>.lpf(800)</code> 的數字改大或改小，聲音會立刻變亮或變悶：</p>
+<pre><code class="language-javascript">stack(
+  s(&quot;bd*4, [~ sd]*2, hh*8&quot;),          // 大鼓、小鼓、hi-hat
+  note(&quot;&lt;c3 a2 f2 g2&gt;&quot;).s(&quot;sawtooth&quot;)  // 貝斯走和弦根音
+    .lpf(800),                         // 濾波器
+  note(&quot;&lt;[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]&gt;&quot;).s(&quot;triangle&quot;)
+)
+</code></pre>
+<h2>延伸方向</h2>
+<ul>
+<li><strong>混搭模式</strong>：各音軌分別選不同模組，例如 A 歌手的鼓加 B 歌手的和弦（尚未完成）。</li>
+<li><strong>節拍視覺</strong>：背景隨節拍閃動（尚未完成）。</li>
+<li><strong>分享設定</strong>：把目前的模組與參數存成網址，分享給別人（尚未完成）。</li>
+</ul>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="作品導覽">
+      <a class="next" href="02-system-prompt-advice-room.html"><small>下一個</small>System Prompt｜大叔三人組諮詢室</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Jammie ・ TAICA_生成式AI：文字與圖像生成的原理與實務 課程作品集</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{作品標題}}｜Jammie 的生成式 AI 作品集</title>
+  <meta name="description" content="{{一句話摘要}}">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <!-- 作品頁樣板：複製成 works/NN-slug.html，替換所有 {{…}}，段落順序依 AGENTS.md 第 4 節 -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Jammie <span>／ 生成式 AI 作品集</span></a>
+      <a class="back" href="../index.html#works">← 所有作品</a>
+    </div>
+  </header>
+
+  <main class="work">
+    <section class="work-hero wrap-narrow">
+      <p class="work-no">{{NN}}</p>
+      <ul class="tags">
+        <li><span class="tag">{{標籤}}</span></li>
+      </ul>
+      <h1>{{技術}}<span class="sep">｜</span>{{主題}}</h1>
+      <p class="lede">{{一句話摘要}}</p>
+      <p class="links">
+        <a class="btn" href="{{連結網址}}" target="_blank" rel="noopener">{{連結名稱}} ↗</a>
+      </p>
+    </section>
+
+    <figure class="cover wrap-narrow">
+      <img src="../assets/img/{{NN-slug}}-cover.svg" alt="{{封面描述}}" width="1200" height="630">
+    </figure>
+
+    <article class="prose wrap-narrow">
+      <h2>作品概述</h2>
+      <p>{{內容}}</p>
+
+      <h2>動機</h2>
+      <p>{{內容}}</p>
+
+      <h2>使用技術</h2>
+      <table>
+        <thead><tr><th>技術</th><th>在這個作品的用途</th></tr></thead>
+        <tbody><tr><td>{{技術}}</td><td>{{用途}}</td></tr></tbody>
+      </table>
+
+      <h2>運作方式</h2>
+      <ol><li>{{步驟}}</li></ol>
+
+      <h2>設計重點</h2>
+      <ul><li><strong>{{關鍵字}}</strong>：{{說明}}</li></ul>
+
+      <h2>範例</h2>
+      <pre><code>{{範例}}</code></pre>
+
+      <h2>延伸方向</h2>
+      <ul><li>{{項目}}</li></ul>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="作品導覽">
+      <a class="prev" href="{{前一個作品}}.html"><small>上一個</small>{{前一個作品標題}}</a>
+      <a class="next" href="{{下一個作品}}.html"><small>下一個</small>{{下一個作品標題}}</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Jammie ・ TAICA_生成式AI：文字與圖像生成的原理與實務 課程作品集</p>
+    </div>
+  </footer>
+</body>
+</html>

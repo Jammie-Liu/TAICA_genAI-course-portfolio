@@ -1,4 +1,4 @@
-# 02-system-prompt-advice-room｜大叔三人組諮詢室
+# 02-system-prompt-advice-room｜煩惱諮詢室
 
 ## 作業要求
 - 打造對話機器人，自己寫 system prompt。

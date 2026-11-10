@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planning Agent｜先規劃再回覆的諮詢室｜Jammie 的生成式 AI 作品集</title>
+  <meta name="description" content="讓諮詢機器人先產生可編輯的「諮詢計畫」，再依計畫寫出三人對話回覆。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Jammie <span>／ 生成式 AI 作品集</span></a>
+      <a class="back" href="../index.html#works">← 所有作品</a>
+    </div>
+  </header>
+
+  <main class="work">
+    <section class="work-hero wrap-narrow">
+      <p class="work-no">WORK 04</p>
+      <ul class="tags">
+        <li><span class="tag">Planning</span></li>
+        <li><span class="tag">兩階段生成</span></li>
+        <li><span class="tag">Gradio</span></li>
+        <li><span class="tag">Colab</span></li>
+        <li><span class="tag">提示安全</span></li>
+      </ul>
+      <h1>Planning Agent<span class="sep">｜</span>先規劃再回覆的諮詢室</h1>
+      <p class="lede">讓諮詢機器人先產生可編輯的「諮詢計畫」，再依計畫寫出三人對話回覆。</p>
+      <p class="links">
+        <a class="btn" href="https://colab.research.google.com/drive/1z7qjQPu9CZbR-BTfm8oAloUSCg5kRx1D" target="_blank" rel="noopener">Colab 筆記本 ↗</a>
+      </p>
+    </section>
+
+    <figure class="cover wrap-narrow">
+      <img src="../assets/img/04-planning-agent-advice-room-cover.svg" alt="幾何封面：清單方塊經由箭頭流向對話框" width="1200" height="630">
+    </figure>
+
+    <article class="prose wrap-narrow">
+<h2>作品概述</h2>
+<p>延續作品 02 的「大叔三人組諮詢室」，改用 Planning（先規劃、再執行）的方式重做。機器人收到投稿後不直接回覆，而是先產生一份六項的「諮詢計畫」，再根據原投稿與計畫，寫出約 200–300 字的三人對話回覆。</p>
+<h2>動機</h2>
+<p>諮詢回覆要同時顧到很多事：接住情緒、不替對方亂猜想法、三個角色的分工、搞笑和正經的比例，還有遇到嚴重情況時不能開玩笑。一次直接寫完，模型很容易漏掉其中幾項。先規劃再寫作，可以讓每個要求都被安排到，回覆的品質也比較穩定。</p>
+<h2>使用技術</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技術</th>
+<th>在這個作品的用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planning</td>
+<td>第一階段只產生計畫，不寫完整回覆</td>
+</tr>
+<tr>
+<td>兩階段生成</td>
+<td>第二階段同時拿到原投稿與計畫，依計畫寫三人對話</td>
+</tr>
+<tr>
+<td>Gradio</td>
+<td>介面上可以直接修改計畫，再只重跑第二階段</td>
+</tr>
+<tr>
+<td>提示安全規則</td>
+<td>兩個階段都規定：重大痛苦時停止搞笑，並提供求助資源</td>
+</tr>
+<tr>
+<td>Colab</td>
+<td>執行兩階段流程與檢查程式</td>
+</tr>
+</tbody>
+</table></div>
+<h2>運作方式</h2>
+<ol>
+<li><strong>輸入投稿</strong>：例如「曖昧對象最近都已讀不回，但限動照常在發。我有點難過，也還沒決定要不要繼續等。」</li>
+<li><strong>規劃階段</strong>：模型產生六項諮詢計畫，顯示在介面上。</li>
+<li><strong>人工介入（選擇性）</strong>：使用者可以修改計畫，例如換一個建議方向，或刪掉不喜歡的吐槽。</li>
+<li><strong>寫作階段</strong>：模型根據原投稿與計畫寫出三人對話；計畫和原投稿有矛盾時，以原投稿的事實為準。</li>
+<li><strong>形式檢查</strong>：程式檢查字數是否約在 200–300 字元，以及最後一句是否由 Mithra 說。</li>
+</ol>
+<h2>設計重點</h2>
+<ul>
+<li><strong>六項計畫</strong>：已知事實、接住情緒、兩個建議方向、選用方向與理由、角色分工與吐槽、寫作安排。</li>
+<li><strong>只寫已知事實</strong>：已讀不回是事實；「對方其實很忙」「對方不喜歡你」都不是，不能為了給建議替對方編想法。</li>
+<li><strong>可能性不能寫成結果</strong>：「可以先停止追訊息幾天」是建議；「停幾天後對方就會主動找你」是假裝結果已經發生。</li>
+<li><strong>原投稿要一起傳</strong>：只給計畫的話，原本發生什麼、哪些是事實，可能在摘要中遺失。</li>
+<li><strong>人仍要把關</strong>：第一階段不是經過驗證的安全分類器，判斷錯了，第二階段也可能跟著錯；程式檢查只看形式，內容好不好仍要人判斷。</li>
+</ul>
+<h2>範例</h2>
+<p>第一階段要求模型輸出的計畫格式（每項一到兩句）：</p>
+<pre><code class="language-text">1. 已知事實：只摘要原投稿明確提供的內容
+2. 接住情緒：用一句話承認感受
+3. 兩個具體建議方向：列 A、B，連回原投稿
+4. 選用方向與簡短理由：選 A 或 B，一句話交代原因
+5. 角色分工與輕巧吐槽：Blo 的核心、Tuka 的荒謬解法、一個小行動
+6. 寫作安排：第一反應 → 事實暴擊 → 吐槽插曲 → 真心建議 → Mithra 收尾
+</code></pre>
+<h2>延伸方向</h2>
+<ul>
+<li>在規劃之前加入一個專門判斷投稿風險的步驟，而不是只靠規劃階段順便判斷。</li>
+<li>結合作品 03 的 RAG，讓建議可以引用可信的資料來源。</li>
+</ul>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="作品導覽">
+      <a class="prev" href="03-rag-mcp-tutor.html"><small>上一個</small>RAG｜MCP 課程助教</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Jammie ・ TAICA_生成式AI：文字與圖像生成的原理與實務 課程作品集</p>
+    </div>
+  </footer>
+</body>
+</html>

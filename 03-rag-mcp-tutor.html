@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG｜MCP 課程助教｜Jammie 的生成式 AI 作品集</title>
+  <meta name="description" content="把 Anthropic 的 MCP 課程做成知識庫，打造只根據課程內容回答的中文助教。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Jammie <span>／ 生成式 AI 作品集</span></a>
+      <a class="back" href="../index.html#works">← 所有作品</a>
+    </div>
+  </header>
+
+  <main class="work">
+    <section class="work-hero wrap-narrow">
+      <p class="work-no">WORK 03</p>
+      <ul class="tags">
+        <li><span class="tag">RAG</span></li>
+        <li><span class="tag">Embeddings</span></li>
+        <li><span class="tag">FAISS</span></li>
+        <li><span class="tag">Colab</span></li>
+        <li><span class="tag">System Prompt</span></li>
+      </ul>
+      <h1>RAG<span class="sep">｜</span>MCP 課程助教</h1>
+      <p class="lede">把 Anthropic 的 MCP 課程做成知識庫，打造只根據課程內容回答的中文助教。</p>
+      <p class="links">
+        <a class="btn" href="https://colab.research.google.com/drive/1wWkhHjGnnxIDvWxncjBJbro5c_tbD9Ez?usp=sharing" target="_blank" rel="noopener">Colab 筆記本 ↗</a>
+      </p>
+    </section>
+
+    <figure class="cover wrap-narrow">
+      <img src="../assets/img/03-rag-mcp-tutor-cover.svg" alt="幾何封面：一疊文件、放大鏡與連到對話框的線條" width="1200" height="630">
+    </figure>
+
+    <article class="prose wrap-narrow">
+<h2>作品概述</h2>
+<p>「MCP 助教」是一個 RAG（Retrieval-Augmented Generation，檢索增強生成）對話機器人。知識來源是 Anthropic Academy 的〈Introduction to Model Context Protocol〉課程。使用者用中文發問後，助教會先從課程知識庫找出相關段落，再根據這些段落回答，並標註答案出自哪份文件。</p>
+<h2>動機</h2>
+<p>最近我在 Anthropic 的課程網站上學習 MCP。MCP 對我來說是全新的概念，課程又是全英文，遇到問題常常要回頭翻好幾個單元。我希望有一位隨時可以發問的助教，能用中文回答各種問題，而且答案要以課程內容為準、不能亂編，所以把整門課程的內容做成 RAG 知識庫。</p>
+<h2>使用技術</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技術</th>
+<th>在這個作品的用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>知識庫資料集</td>
+<td>課程 11 個單元的中文教學摘要，加 1 份中英名詞對照表，共 12 份文件</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>把文件切塊後轉成向量，用來比對問題與段落的相似度</td>
+</tr>
+<tr>
+<td>FAISS</td>
+<td>儲存向量並快速檢索最相關的段落，匯出成 <code>vector_db.zip</code></td>
+</tr>
+<tr>
+<td>Colab</td>
+<td>建立與載入知識庫、執行問答；從 Google Drive 自動讀入知識庫</td>
+</tr>
+<tr>
+<td>System Prompt</td>
+<td>「MCP 助教」人設與 13 條回答、教學、限制規則</td>
+</tr>
+</tbody>
+</table></div>
+<h2>運作方式</h2>
+<ol>
+<li><strong>整理資料</strong>：依老師示範資料集的格式，把課程內容改寫成 12 份繁體中文文件，附 <code>sources.csv</code> 與 <code>問題集.csv</code>。</li>
+<li><strong>建立知識庫</strong>：將文件切塊、計算 embeddings，存進 FAISS 向量資料庫並匯出。</li>
+<li><strong>載入知識庫</strong>：從 Google Drive 自動讀取 <code>vector_db.zip</code>，不需要每次手動上傳。</li>
+<li><strong>檢索與回答</strong>：使用者提問後，先找出最相關的段落，再連同 system prompt 交給語言模型，產生附引用編號的回答。</li>
+</ol>
+<h2>設計重點</h2>
+<ul>
+<li><strong>中文改寫、術語保留英文</strong>：方便用中文提問與檢索，同時讓 tool、resource 等名詞能和程式碼對得上。</li>
+<li><strong>程式碼保留課程原始範例</strong>：助教可以逐段解釋實際的程式，而不是自己編寫。</li>
+<li><strong>名詞對照表</strong>：額外整理一份中英術語表，讓中文問題也能檢索到英文概念。</li>
+<li><strong>知識庫外的問題要說不知道</strong>：問題集中有 3 題是課程沒教的內容（例如「怎麼用 TypeScript 寫 MCP Server？」），用來測試助教會不會回答「目前教材沒有足夠資訊」。</li>
+<li><strong>助教而不是代寫工具</strong>：system prompt 規定針對初學者先用白話解釋，遇到測驗題改用引導提問，不直接給答案。</li>
+</ul>
+<h2>範例</h2>
+<p><code>問題集.csv</code> 中的測試問題：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>測試問題</th>
+<th>預期行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP 跟一般的 tool use 有什麼差別？</td>
+<td>引用「MCP 是什麼」文件回答</td>
+</tr>
+<tr>
+<td>我想讓使用者按一個按鈕就執行固定流程，應該用 Tools、Resources 還是 Prompts？</td>
+<td>引用「三大原語比較」文件，說明應使用 Prompts</td>
+</tr>
+<tr>
+<td>怎麼用 TypeScript 寫 MCP Server？</td>
+<td>課程只教 Python，應回答目前教材沒有足夠資訊</td>
+</tr>
+</tbody>
+</table></div>
+<h2>延伸方向</h2>
+<ul>
+<li>比較 top-k = 1 與 3 的檢索結果，以及純 LLM 與 RAG 的回答差異。</li>
+<li>課程影片內容目前沒有收錄，之後可以補上影片重點，讓知識庫更完整。</li>
+<li>知識庫是中文摘要、程式碼是英文，可以觀察中英混合內容對檢索的影響。</li>
+</ul>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="作品導覽">
+      <a class="prev" href="02-system-prompt-advice-room.html"><small>上一個</small>System Prompt｜大叔三人組諮詢室</a>
+      <a class="next" href="04-planning-agent-advice-room.html"><small>下一個</small>Planning Agent｜先規劃再回覆的諮詢室</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Jammie ・ TAICA_生成式AI：文字與圖像生成的原理與實務 課程作品集</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -7,7 +7,7 @@ TAICA_生成式AI：文字與圖像生成的原理與實務 課程的作業作�
 | 編號 | 作品 | 技術 |
 | --- | --- | --- |
 | 01 | 互動網頁 × Live Coding｜偶像風格音樂實驗室 | Strudel、Web Audio |
-| 02 | System Prompt｜大叔三人組諮詢室 | System Prompt、Few-shot |
+| 02 | System Prompt｜煩惱諮詢室 | System Prompt、Few-shot |
 | 03 | RAG｜MCP 課程助教 | RAG、Embeddings、FAISS |
 | 04 | Planning Agent｜先規劃再回覆的諮詢室 | Planning、兩階段生成、Gradio |
 
